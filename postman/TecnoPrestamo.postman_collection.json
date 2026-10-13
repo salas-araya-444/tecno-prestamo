@@ -1,0 +1,981 @@
+{
+  "info": {
+    "_postman_id": "cec043c8-1f67-4004-84b0-79a18e07d887",
+    "name": "TecnoPréstamo",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "TOKEN - admin (petición auxiliar)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"TU_CONTRASENA_AQUI\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/token/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "token",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TOKEN - prestamista (petición auxiliar)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"prestamista\",\r\n    \"password\": \"TU_CONTRASENA_AQUI\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/token/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "token",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "01 - GET Listar equipos (público)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/equipos/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "equipos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "02 - POST Crear equipo sin token",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"codigo\": \"LAP-001\",\r\n    \"nombre\": \"Laptop Lenovo ThinkPad\",\r\n    \"categoria\": \"Laptop\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/equipos/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "equipos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "03 - POST Crear equipo sin permiso (prestamista)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_PRESTAMISTA_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"codigo\": \"LAP-001\",\r\n    \"nombre\": \"Laptop Lenovo ThinkPad\",\r\n    \"categoria\": \"Laptop\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/equipos/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "equipos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "04 - POST Crear equipo válido",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_ADMIN_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"codigo\": \"LAP-001\",\r\n    \"nombre\": \"Laptop Lenovo ThinkPad\",\r\n    \"categoria\": \"Laptop\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/equipos/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "equipos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "05 - POST Crear equipo en mantenimiento",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_ADMIN_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"codigo\": \"PRO-001\",\r\n    \"nombre\": \"Proyector Epson\",\r\n    \"categoria\": \"Proyector\",\r\n    \"estado\": \"MANTENIMIENTO\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/equipos/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "equipos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "06 - POST Error código duplicado y nombre vacío",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_ADMIN_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"codigo\": \"LAP-001\",\r\n    \"nombre\": \"\",\r\n    \"categoria\": \"Laptop\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/equipos/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "equipos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "07 - GET Filtrar por categoría y ordenar por nombre",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/equipos/?categoria=Laptop&ordering=nombre",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "equipos",
+            ""
+          ],
+          "query": [
+            {
+              "key": "categoria",
+              "value": "Laptop"
+            },
+            {
+              "key": "ordering",
+              "value": "nombre"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "08 - GET Página 1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/equipos/?page=1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "equipos",
+            ""
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "09 - GET Equipo inexistente",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/equipos/9999/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "equipos",
+            "9999",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "10 - PATCH Actualizar equipo",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_ADMIN_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nombre\": \"Laptop Lenovo ThinkPad E14\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/equipos/1/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "equipos",
+            "1",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "11 - GET Listar préstamos sin token",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/prestamos/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "prestamos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "12 - POST Crear préstamo válido",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_PRESTAMISTA_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"equipo\": 1,\r\n    \"solicitante\": \"Ana Mora\",\r\n    \"fecha_prestamo\": \"2026-10-12\",\r\n    \"fecha_devolucion\": \"2026-10-15\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/prestamos/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "prestamos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "13 - POST Error fecha de devolución anterior",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_PRESTAMISTA_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"equipo\": 1,\r\n    \"solicitante\": \"Luis Rojas\",\r\n    \"fecha_prestamo\": \"2026-10-15\",\r\n    \"fecha_devolucion\": \"2026-10-10\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/prestamos/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "prestamos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "14 - POST Error equipo en mantenimiento",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_PRESTAMISTA_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"equipo\": 2,\r\n    \"solicitante\": \"Luis Rojas\",\r\n    \"fecha_prestamo\": \"2026-10-12\",\r\n    \"fecha_devolucion\": \"2026-10-15\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/prestamos/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "prestamos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "15 - POST Error equipo con préstamo activo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_PRESTAMISTA_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"equipo\": 1,\r\n    \"solicitante\": \"Luis Rojas\",\r\n    \"fecha_prestamo\": \"2026-10-12\",\r\n    \"fecha_devolucion\": \"2026-10-15\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/prestamos/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "prestamos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "16 - POST Crear préstamo sin grupo Prestamistas (admin)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_ADMIN_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"equipo\": 1,\r\n    \"solicitante\": \"Luis Rojas\",\r\n    \"fecha_prestamo\": \"2026-10-12\",\r\n    \"fecha_devolucion\": \"2026-10-15\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/prestamos/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "prestamos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "17 - GET Listar préstamos con token",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_PRESTAMISTA_AQUI"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/prestamos/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "prestamos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "18 - GET Filtrar préstamos por estado y equipo",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_PRESTAMISTA_AQUI"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/prestamos/?estado=ACTIVO&equipo=1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "prestamos",
+            ""
+          ],
+          "query": [
+            {
+              "key": "estado",
+              "value": "ACTIVO"
+            },
+            {
+              "key": "equipo",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "19 - GET Préstamo inexistente",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_PRESTAMISTA_AQUI"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/prestamos/9999/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "prestamos",
+            "9999",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "20 - PUT Actualizar el mismo préstamo",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_PRESTAMISTA_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"equipo\": 1,\r\n    \"solicitante\": \"Ana María Mora\",\r\n    \"fecha_prestamo\": \"2026-10-12\",\r\n    \"fecha_devolucion\": \"2026-10-16\",\r\n    \"estado\": \"ACTIVO\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/prestamos/1/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "prestamos",
+            "1",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "21 - PATCH Marcar préstamo como devuelto",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_PRESTAMISTA_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"estado\": \"DEVUELTO\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/prestamos/1/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "prestamos",
+            "1",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "22 - DELETE Préstamo sin ser administrador",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_PRESTAMISTA_AQUI"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/prestamos/1/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "prestamos",
+            "1",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "23 - DELETE Préstamo (admin)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_ADMIN_AQUI"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/prestamos/1/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "prestamos",
+            "1",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "24 - DELETE Equipo (admin)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token TOKEN_ADMIN_AQUI"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/equipos/2/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "equipos",
+            "2",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "25 - GET Sesión - obtener csrftoken",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/sesion/preferencia/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "sesion",
+            "preferencia",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "26 - POST Sesión - guardar preferencia",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-CSRFToken",
+            "value": "TU_CSRF_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"categoria_preferida\": \"Laptop\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/sesion/preferencia/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "sesion",
+            "preferencia",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "27 - GET Sesión - consultar preferencia",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/sesion/preferencia/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "sesion",
+            "preferencia",
+            ""
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
